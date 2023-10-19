@@ -182,6 +182,27 @@ const boxes = {
     xheroes: [],
     xzombies: [],
   },
+  cec: {
+    title: "Con-exclusive: Coulson",
+    heroes: ["Coulson"],
+    zombies: [],
+    xheroes: [],
+    xzombies: [],
+  },
+  cew: {
+    title: "Con-exclusive: Wong",
+    heroes: ["Wong"],
+    zombies: [],
+    xheroes: [],
+    xzombies: [],
+  },
+  ceb: {
+    title: "Con-exclusive: Batman",
+    heroes: ["Batman"],
+    zombies: [],
+    xheroes: [],
+    xzombies: [],
+  },
 };
 
 function toggleBox(el) {
@@ -194,22 +215,24 @@ function toggleBox(el) {
 }
 
 function populateBoxSelection(boxArray) {
-  boxArray.forEach((box) => {
-    const { boxId, checked } = box;
+  const boxKeys = Object.keys(boxes)
+  boxKeys.forEach((key) => {
+    const existingSelection = boxArray.find(({ boxId }) => boxId === key) || {}
+    const { checked } = existingSelection;
     const boxContainer = document.getElementById("boxes");
 
     const checkboxWrapper = document.createElement("div");
 
     const input = document.createElement("input");
     input.type = "checkbox";
-    input.checked = checked;
-    input.name = boxId;
-    input.id = boxId;
+    input.checked = !!checked;
+    input.name = key;
+    input.id = key;
     input.addEventListener("change", toggleBox);
 
     const label = document.createElement("label");
-    label.innerHTML = boxes[boxId].title;
-    label.htmlFor = boxId;
+    label.innerHTML = boxes[key].title;
+    label.htmlFor = key;
 
     checkboxWrapper.appendChild(input);
     checkboxWrapper.appendChild(label);
