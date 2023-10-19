@@ -228,8 +228,9 @@ if (!returnUserBoxes) {
   boxSelection = mappedBoxIds;
 } else {
   boxSelection = JSON.parse(returnUserBoxes);
-  populateBoxSelection(boxSelection);
 }
+
+populateBoxSelection(boxSelection);
 
 function showChosenChars(selectedChars) {
   document.getElementById("placeholderParagraph")?.remove();
